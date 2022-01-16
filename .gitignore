@@ -11,6 +11,10 @@
 .flutter-plugins-dependencies
 .metadata
 
+.gradle/
+local.properties
+
+
 
 # IntelliJ related
 *.iml

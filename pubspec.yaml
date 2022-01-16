@@ -39,6 +39,7 @@ dependencies:
 
   expandable: ^5.0.1
   url_launcher: ^5.7.10
+  cloud_firestore: ^0.16.0+1
 
 dev_dependencies:
   flutter_test:
