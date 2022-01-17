@@ -24,7 +24,6 @@ class _TableEventsExampleState extends State<TableEventsExample> {
   @override
   void initState() {
     super.initState();
-
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
   }
@@ -37,6 +36,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
 
   List<Event> _getEventsForDay(DateTime day) {
     // Implementation example
+
     return kEvents[day] ?? [];
   }
 

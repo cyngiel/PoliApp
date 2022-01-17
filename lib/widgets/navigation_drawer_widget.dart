@@ -1,9 +1,10 @@
-import 'package:poli_app/pages/calendar_page.dart';
 import 'package:poli_app/pages/calendar_pages/events_example.dart';
 import 'package:poli_app/pages/faqs_page.dart';
 import 'package:poli_app/pages/links_page.dart';
 import 'package:poli_app/pages/user_page.dart';
 import 'package:flutter/material.dart';
+
+import '../calendar_utils.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
@@ -15,7 +16,7 @@ class NavigationDrawerWidget extends StatelessWidget {
 /*    final urlImage =
         'https://p.lodz.pl/arch/sites/default/files/pliki/logo-pl_2.jpg';*/
     final urlImage = 'assets/logo-pl_2.jpg';
-
+    updateCalendar();
     return Drawer(
       child: Material(
         color: Colors.blue,
