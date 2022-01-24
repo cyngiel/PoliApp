@@ -3,6 +3,7 @@ import 'package:poli_app/pages/faqs_page.dart';
 import 'package:poli_app/pages/findout.dart';
 import 'package:poli_app/pages/info_page.dart';
 import 'package:poli_app/pages/links_page.dart';
+import 'package:poli_app/pages/medical_page.dart';
 import 'package:poli_app/pages/user_page.dart';
 import 'package:flutter/material.dart';
 
@@ -61,6 +62,12 @@ class NavigationDrawerWidget extends StatelessWidget {
                     text: 'Przydatne linki',
                     icon: Icons.link,
                     onClicked: () => selectedItem(context, 2),
+                  ),
+                  const SizedBox(height: 16),
+                  buildMenuItem(
+                    text: 'Placówki medyczne',
+                    icon: Icons.link,
+                    onClicked: () => selectedItem(context, 5),
                   ),
                   const SizedBox(height: 24),
                   Divider(color: Colors.white70),
@@ -158,6 +165,11 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 4:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => InfoPage(),
+        ));
+        break;
+      case 5:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => MedicalPage(),
         ));
         break;
     }
