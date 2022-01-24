@@ -70,7 +70,6 @@ class EventPage extends StatelessWidget {
     );
 
     return MaterialApp(
-      title: 'Flutter layout demo',
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Podgląd wydarzenia'),
