@@ -1,5 +1,7 @@
 import 'package:poli_app/pages/calendar_pages/events_example.dart';
 import 'package:poli_app/pages/faqs_page.dart';
+import 'package:poli_app/pages/findout.dart';
+import 'package:poli_app/pages/info_page.dart';
 import 'package:poli_app/pages/links_page.dart';
 import 'package:poli_app/pages/user_page.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +13,8 @@ class NavigationDrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final name = 'Politechnika Lódzka';
-    final email = 'Bardzo fajna apka';
+    final name = 'PoliApp';
+    final email = 'Politechnika Lódzka';
 /*    final urlImage =
         'https://p.lodz.pl/arch/sites/default/files/pliki/logo-pl_2.jpg';*/
     final urlImage = 'assets/logo-pl_2.jpg';
@@ -35,6 +37,13 @@ class NavigationDrawerWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Divider(color: Colors.white70),
+                  const SizedBox(height: 12),
+                  buildMenuItem(
+                    text: 'Strefa Kandydata',
+                    icon: Icons.wifi_tethering,
+                    onClicked: () => selectedItem(context, 3),
+                  ),
+                  Divider(color: Colors.white70),
                   const SizedBox(height: 24),
                   buildMenuItem(
                     text: 'Wydarzenia',
@@ -55,13 +64,8 @@ class NavigationDrawerWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   Divider(color: Colors.white70),
-                  const SizedBox(height: 24),
-                  buildMenuItem(
-                    text: 'Ustawienia',
-                    icon: Icons.settings,
-                    onClicked: () => selectedItem(context, 3),
-                  ),
-                  const SizedBox(height: 16),
+
+                  const SizedBox(height: 12),
                   buildMenuItem(
                     text: 'O aplikacji',
                     icon: Icons.info_outline,
@@ -144,6 +148,16 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 2:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => LinksPage(),
+        ));
+        break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => FindOut(),
+        ));
+        break;
+      case 4:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => InfoPage(),
         ));
         break;
     }

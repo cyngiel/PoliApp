@@ -31,24 +31,24 @@ class FaqsPage extends StatelessWidget {
       );
 
   Widget buildCard(String title, String content) => Padding(
-    padding: EdgeInsets.fromLTRB(6, 12, 6, 0),
-    child: Card(
-      child: ExpandablePanel(
-        header: Padding(
-            padding: EdgeInsets.fromLTRB(6, 5, 6, 0),
-            child: Text(title,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ))),
-      expanded: Padding(
-          padding: EdgeInsets.fromLTRB(12, 0, 12, 12),
-          child: Text(content,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-              ))),
-      collapsed: const SizedBox.shrink(),
-    )),
-  );
+        padding: EdgeInsets.fromLTRB(6, 12, 6, 0),
+        child: Card(
+            child: ExpandablePanel(
+          header: Padding(
+              padding: EdgeInsets.fromLTRB(6, 5, 6, 0),
+              child: Text(title,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ))),
+          expanded: Padding(
+              padding: EdgeInsets.fromLTRB(12, 0, 12, 12),
+              child: Text(content,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                  ))),
+          collapsed: const SizedBox.shrink(),
+        )),
+      );
 }
