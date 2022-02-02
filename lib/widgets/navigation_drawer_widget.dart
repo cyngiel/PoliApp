@@ -4,13 +4,16 @@ import 'package:poli_app/pages/findout.dart';
 import 'package:poli_app/pages/info_page.dart';
 import 'package:poli_app/pages/links_page.dart';
 import 'package:poli_app/pages/medical_page.dart';
+import 'package:poli_app/pages/timetable_page.dart';
 import 'package:poli_app/pages/user_page.dart';
 import 'package:flutter/material.dart';
+import 'package:translator/translator.dart';
 
 import '../calendar_utils.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
+  final translator = GoogleTranslator();
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +47,18 @@ class NavigationDrawerWidget extends StatelessWidget {
                     icon: Icons.wifi_tethering,
                     onClicked: () => selectedItem(context, 3),
                   ),
+                  const SizedBox(height: 12),
                   Divider(color: Colors.white70),
-                  const SizedBox(height: 24),
                   buildMenuItem(
                     text: 'Wydarzenia',
                     icon: Icons.calendar_today,
                     onClicked: () => selectedItem(context, 0),
+                  ),
+                  const SizedBox(height: 16),
+                  buildMenuItem(
+                    text: 'Plan Zajęć',
+                    icon: Icons.calendar_view_day_outlined,
+                    onClicked: () => selectedItem(context, 6),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
@@ -66,12 +75,11 @@ class NavigationDrawerWidget extends StatelessWidget {
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'Placówki medyczne',
-                    icon: Icons.link,
+                    icon: Icons.medical_services_outlined,
                     onClicked: () => selectedItem(context, 5),
                   ),
                   const SizedBox(height: 24),
                   Divider(color: Colors.white70),
-
                   const SizedBox(height: 12),
                   buildMenuItem(
                     text: 'O aplikacji',
@@ -129,13 +137,34 @@ class NavigationDrawerWidget extends StatelessWidget {
   }) {
     final color = Colors.white;
     final hoverColor = Colors.white70;
+    var l = Languages();
 
-    return ListTile(
-      leading: Icon(icon, color: color),
-      title: Text(text, style: TextStyle(color: color)),
-      hoverColor: hoverColor,
-      onTap: onClicked,
-    );
+    String name = "Translating...";
+
+//Text(text, style: TextStyle(color: color))
+
+    if (l.language != 'pl') {
+      return ListTile(
+        leading: Icon(icon, color: color),
+        title: FutureBuilder<String>(
+          future: translator
+              .translate(text, to: l.language)
+              .then((result) => name = result.text),
+          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+            return Text(name, style: TextStyle(color: color));
+          },
+        ),
+        hoverColor: hoverColor,
+        onTap: onClicked,
+      );
+    } else {
+      return ListTile(
+        leading: Icon(icon, color: color),
+        title: Text(text, style: TextStyle(color: color)),
+        hoverColor: hoverColor,
+        onTap: onClicked,
+      );
+    }
   }
 
   void selectedItem(BuildContext context, int index) {
@@ -170,6 +199,11 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 5:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => MedicalPage(),
+        ));
+        break;
+      case 6:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => TimetablePage(),
         ));
         break;
     }

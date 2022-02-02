@@ -159,3 +159,17 @@ final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
 final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
 
 final kNextDay = DateTime(kToday.year, kToday.month, kToday.day + 1);
+
+class Languages{
+
+  static final Languages _singleton = Languages._internal();
+
+  factory Languages() {
+    return _singleton;
+  }
+
+  Languages._internal();
+
+  String language = 'en';
+}
+
