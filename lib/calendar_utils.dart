@@ -11,19 +11,22 @@ class Event {
   final String date;
   final String description;
   final String localization;
+  final bool prior;
 
   Event(
       {required this.title,
       required this.time,
       required this.date,
       required this.localization,
-      required this.description});
+      required this.description,
+      required this.prior});
 
   Event.basicEvent(this.title)
       : description = 'brak opisu',
         time = 'brak czasu',
         date = 'brak daty',
-        localization = 'brak lokalizacji';
+        localization = 'brak lokalizacji',
+        prior = false;
 
   @override
   String toString() => title + ' | ' + time;
@@ -47,7 +50,7 @@ final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
       Event.basicEvent('Today\'s Event 2'),
     ],
     kNextDay: [
-      Event(title: 'Ciekawe spotkanie', date: getDateString(kNextDay) , time: '15:15', localization: 'CTI 308', description: 'Niesamowicie ciekawe spotkanie na tematy niesaoowicie ciekawe i  wyczekiwane opis opis opis opis'),
+      Event(title: 'Ciekawe spotkanie', date: getDateString(kNextDay) , time: '15:15', localization: 'CTI 308', description: 'Niesamowicie ciekawe spotkanie na tematy niesaoowicie ciekawe i  wyczekiwane opis opis opis opis', prior: true),
       Event.basicEvent('Rektor oprowadza'),
     ],
 
@@ -67,7 +70,7 @@ final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
     for(final doc in allData){
       var formatter = new DateFormat.Hm();
       String formattedTime = formatter.format(doc['date'].toDate());
-      Event event = Event(title: doc['title'], time: formattedTime, date: getDateString(doc['date'].toDate()), localization: doc['localization'], description: doc['description']);
+      Event event = Event(title: doc['title'], time: formattedTime, date: getDateString(doc['date'].toDate()), localization: doc['localization'], description: doc['description'], prior: doc['prior']);
 
       addEvent(kEvents, doc['date'].toDate(), event);
     }
@@ -171,5 +174,26 @@ class Languages{
   Languages._internal();
 
   String language = 'en';
+
+  void setLanguage(String l){
+    language = l;
+  }
+
+
 }
 
+class Auth{
+
+  static final Auth _singleton = Auth._internal();
+
+  factory Auth() {
+    return _singleton;
+  }
+
+  Auth._internal();
+  String language = 'en';
+  bool isLoggedIn = false;
+  void setLanguage(String l){
+    language = l;
+  }
+}

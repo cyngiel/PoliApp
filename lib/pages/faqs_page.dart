@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:expandable/expandable.dart';
 
 class FaqsPage extends StatelessWidget {
+  final fieldText = TextEditingController();
+  final fieldText2 = TextEditingController();
+  CollectionReference events = FirebaseFirestore.instance.collection('faq');
+
+  String title = 'title';
+  String desc = 'desc';
+
   @override
   Widget build(BuildContext context) => Scaffold(
         drawer: NavigationDrawerWidget(),
@@ -12,22 +19,27 @@ class FaqsPage extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.red,
         ),
-        body: StreamBuilder(
-            stream: FirebaseFirestore.instance.collection('faq').snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (!snapshot.hasData) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                return ListView(
-                  children: snapshot.data!.docs.map((document) {
-                    return buildCard(document['title'], document['content']);
-                  }).toList(),
-                );
-              }
-            }),
+        body:
+          StreamBuilder(
+              stream: FirebaseFirestore.instance.collection('faq').snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  ListView list =  ListView(
+                    children: snapshot.data!.docs.map((document) {
+                      return buildCard(document['title'], document['content']);
+                    }).toList(),
+                  );
+
+                  return list;
+                }
+              }),
+
+
       );
 
   Widget buildCard(String title, String content) => Padding(

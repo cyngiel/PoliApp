@@ -106,6 +106,10 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                 return ListView.builder(
                   itemCount: value.length,
                   itemBuilder: (context, index) {
+                    Color c = Colors.white10;
+                    if(value[index].prior){
+                      c = Colors.red;
+                    }
                     return Container(
                       margin: const EdgeInsets.symmetric(
                         horizontal: 12.0,
@@ -114,6 +118,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                       decoration: BoxDecoration(
                         border: Border.all(),
                         borderRadius: BorderRadius.circular(12.0),
+                        color : c,
                       ),
                       child: ListTile(
                         onTap: () => Navigator.of(context).push(MaterialPageRoute(

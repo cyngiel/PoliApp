@@ -1,8 +1,11 @@
+import 'package:poli_app/pages/admin_page.dart';
+import 'package:poli_app/pages/adminfaq_page.dart';
 import 'package:poli_app/pages/calendar_pages/events_example.dart';
 import 'package:poli_app/pages/faqs_page.dart';
 import 'package:poli_app/pages/findout.dart';
 import 'package:poli_app/pages/info_page.dart';
 import 'package:poli_app/pages/links_page.dart';
+import 'package:poli_app/pages/login_page.dart';
 import 'package:poli_app/pages/medical_page.dart';
 import 'package:poli_app/pages/timetable_page.dart';
 import 'package:poli_app/pages/user_page.dart';
@@ -23,76 +26,171 @@ class NavigationDrawerWidget extends StatelessWidget {
         'https://p.lodz.pl/arch/sites/default/files/pliki/logo-pl_2.jpg';*/
     final urlImage = 'assets/logo-pl_2.jpg';
     updateCalendar();
-    return Drawer(
-      child: Material(
-        color: Colors.blue,
-        child: ListView(
-          children: <Widget>[
-            buildHeader(
-              urlImage: urlImage,
-              name: name,
-              email: email,
-              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => UserPage(),
-              )),
-            ),
-            Container(
-              padding: padding,
-              child: Column(
-                children: [
-                  Divider(color: Colors.white70),
-                  const SizedBox(height: 12),
-                  buildMenuItem(
-                    text: 'Strefa Kandydata',
-                    icon: Icons.wifi_tethering,
-                    onClicked: () => selectedItem(context, 3),
-                  ),
-                  const SizedBox(height: 12),
-                  Divider(color: Colors.white70),
-                  buildMenuItem(
-                    text: 'Wydarzenia',
-                    icon: Icons.calendar_today,
-                    onClicked: () => selectedItem(context, 0),
-                  ),
-                  const SizedBox(height: 16),
-                  buildMenuItem(
-                    text: 'Plan Zajęć',
-                    icon: Icons.calendar_view_day_outlined,
-                    onClicked: () => selectedItem(context, 6),
-                  ),
-                  const SizedBox(height: 16),
-                  buildMenuItem(
-                    text: 'FAQ',
-                    icon: Icons.article_outlined,
-                    onClicked: () => selectedItem(context, 1),
-                  ),
-                  const SizedBox(height: 16),
-                  buildMenuItem(
-                    text: 'Przydatne linki',
-                    icon: Icons.link,
-                    onClicked: () => selectedItem(context, 2),
-                  ),
-                  const SizedBox(height: 16),
-                  buildMenuItem(
-                    text: 'Placówki medyczne',
-                    icon: Icons.medical_services_outlined,
-                    onClicked: () => selectedItem(context, 5),
-                  ),
-                  const SizedBox(height: 24),
-                  Divider(color: Colors.white70),
-                  const SizedBox(height: 12),
-                  buildMenuItem(
-                    text: 'O aplikacji',
-                    icon: Icons.info_outline,
-                    onClicked: () => selectedItem(context, 4),
-                  ),
-                ],
+
+    if(Auth().isLoggedIn){
+      return Drawer(
+        child: Material(
+          color: Colors.blue,
+          child: ListView(
+            children: <Widget>[
+              buildHeader(
+                urlImage: urlImage,
+                name: name,
+                email: email,
+                onClicked: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => UserPage(),
+                )),
               ),
-            ),
-          ],
+              Container(
+                padding: padding,
+                child: Column(
+                  children: [
+
+                    const SizedBox(height: 12),
+                    Divider(color: Colors.white70),
+                    buildMenuItem(
+                      text: 'Wydarzenia',
+                      icon: Icons.calendar_today,
+                      onClicked: () => selectedItem(context, 0),
+                    ),
+                    const SizedBox(height: 12),
+                    buildMenuItem(
+                      text: 'Dodawanie wydarzenia',
+                      icon: Icons.settings_applications_outlined,
+                      onClicked: () => selectedItem(context, 7),
+                    ),
+                    const SizedBox(height: 16),
+                    buildMenuItem(
+                      text: 'Plan Zajęć',
+                      icon: Icons.calendar_view_day_outlined,
+                      onClicked: () => selectedItem(context, 6),
+                    ),
+                    const SizedBox(height: 16),
+                    buildMenuItem(
+                      text: 'FAQ',
+                      icon: Icons.article_outlined,
+                      onClicked: () => selectedItem(context, 1),
+                    ),
+                    const SizedBox(height: 12),
+                    buildMenuItem(
+                      text: 'Dodawanie faq',
+                      icon: Icons.settings_applications_outlined,
+                      onClicked: () => selectedItem(context, 10),
+                    ),
+                    const SizedBox(height: 16),
+                    buildMenuItem(
+                      text: 'Przydatne linki',
+                      icon: Icons.link,
+                      onClicked: () => selectedItem(context, 2),
+                    ),
+                    const SizedBox(height: 16),
+                    buildMenuItem(
+                      text: 'Placówki medyczne',
+                      icon: Icons.medical_services_outlined,
+                      onClicked: () => selectedItem(context, 5),
+                    ),
+                    const SizedBox(height: 24),
+                    Divider(color: Colors.white70),
+                    const SizedBox(height: 12),
+                    buildMenuItem(
+                      text: 'O aplikacji',
+                      icon: Icons.info_outline,
+                      onClicked: () => selectedItem(context, 4),
+                    ),
+                    const SizedBox(height: 12),
+                    buildMenuItem(
+                      text: 'Logowanie',
+                      icon: Icons.info_outline,
+                      onClicked: () => selectedItem(context, 9),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }else{
+      return Drawer(
+        child: Material(
+          color: Colors.blue,
+          child: ListView(
+            children: <Widget>[
+              buildHeader(
+                urlImage: urlImage,
+                name: name,
+                email: email,
+                onClicked: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => UserPage(),
+                )),
+              ),
+              Container(
+                padding: padding,
+                child: Column(
+                  children: [
+                    Divider(color: Colors.white70),
+                    const SizedBox(height: 12),
+                    buildMenuItem(
+                      text: 'Strefa Kandydata',
+                      icon: Icons.wifi_tethering,
+                      onClicked: () => selectedItem(context, 3),
+                    ),
+                    const SizedBox(height: 12),
+                    Divider(color: Colors.white70),
+                    buildMenuItem(
+                      text: 'Wydarzenia',
+                      icon: Icons.calendar_today,
+                      onClicked: () => selectedItem(context, 0),
+                    ),
+                    const SizedBox(height: 16),
+                    buildMenuItem(
+                      text: 'Plan Zajęć',
+                      icon: Icons.calendar_view_day_outlined,
+                      onClicked: () => selectedItem(context, 6),
+                    ),
+                    const SizedBox(height: 16),
+                    buildMenuItem(
+                      text: 'FAQ',
+                      icon: Icons.article_outlined,
+                      onClicked: () => selectedItem(context, 1),
+                    ),
+                    const SizedBox(height: 16),
+                    buildMenuItem(
+                      text: 'Przydatne linki',
+                      icon: Icons.link,
+                      onClicked: () => selectedItem(context, 2),
+                    ),
+                    const SizedBox(height: 16),
+                    buildMenuItem(
+                      text: 'Placówki medyczne',
+                      icon: Icons.medical_services_outlined,
+                      onClicked: () => selectedItem(context, 5),
+                    ),
+                    const SizedBox(height: 24),
+                    Divider(color: Colors.white70),
+                    const SizedBox(height: 12),
+                    buildMenuItem(
+                      text: 'O aplikacji',
+                      icon: Icons.info_outline,
+                      onClicked: () => selectedItem(context, 4),
+                    ),
+                    Divider(color: Colors.white70),
+                    const SizedBox(height: 12),
+                    buildMenuItem(
+                      text: 'Administracja',
+                      icon: Icons.info_outline,
+                      onClicked: () => selectedItem(context, 9),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+
   }
 
   Widget buildHeader({
@@ -150,7 +248,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           future: translator
               .translate(text, to: l.language)
               .then((result) => name = result.text),
-          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+          builder: (context, AsyncSnapshot<String> snapshot) {
             return Text(name, style: TextStyle(color: color));
           },
         ),
@@ -204,6 +302,21 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 6:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => TimetablePage(),
+        ));
+        break;
+      case 7:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => AdminPage(),
+        ));
+        break;
+      case 9:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => LoginPage(),
+        ));
+        break;
+      case 10:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => AdminPageFaq(),
         ));
         break;
     }

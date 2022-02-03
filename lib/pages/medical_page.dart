@@ -13,7 +13,7 @@ class MedicalPage extends StatelessWidget {
       backgroundColor: Colors.red,
     ),
     body: ListView(
-      children:  const <Widget>[
+      children:   const <Widget>[
         Card(
           child: ListTile(
             //leading:  FlutterLogo(size: 56.0),
@@ -27,7 +27,7 @@ class MedicalPage extends StatelessWidget {
             leading: Icon(Icons.medical_services_outlined, size: 50,),
             title: Text('ADAMED'),
             subtitle: Text('ul. Paderewskiego11, tel. 42 640-37-3\nAl.Politechniki 5, tel. 42 636-84-62,'),
-            //onTap: () => _launchURL('https://nav.p.lodz.pl/'),
+            //onTap: () => _launchURL('https://goo.gl/maps/deeTCUMkkwpvRyW69'),
           ),
         ),
         Card(
