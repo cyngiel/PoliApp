@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:poli_app/widgets/navigation_drawer_widget.dart';
 
-class AdminPageFaq extends StatefulWidget {
-  State createState() => new MyAppState4();
+class AdminPageFood extends StatefulWidget {
+  State createState() => new MyAppState5();
 }
 
-class MyAppState4 extends State<AdminPageFaq> {
+class MyAppState5 extends State<AdminPageFood> {
   TextEditingController dateinput = TextEditingController();
   final fieldText = TextEditingController();
   final fieldText2 = TextEditingController();
@@ -18,14 +18,14 @@ class MyAppState4 extends State<AdminPageFaq> {
   String localization = "lokalizacja";
   bool prior = false;
 
-  CollectionReference events = FirebaseFirestore.instance.collection('faq');
+  CollectionReference events = FirebaseFirestore.instance.collection('food');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: NavigationDrawerWidget(),
         appBar: AppBar(
-          title: Text("Dodawanie FAQ"),
+          title: Text("Dodawanie restauracji"),
           backgroundColor: Colors.redAccent, //background color of app bar
         ),
         body: Container(
@@ -38,7 +38,7 @@ class MyAppState4 extends State<AdminPageFaq> {
                       controller: fieldText,
                       decoration: InputDecoration(
                           icon: Icon(Icons.text_fields), //icon of text field
-                          labelText: "Pytanie" //label text of field
+                          labelText: "Nazwa restauracji" //label text of field
                       ),
                       onChanged: (text) {
                         //print('First text field: $text');
@@ -46,14 +46,25 @@ class MyAppState4 extends State<AdminPageFaq> {
                       },
                     ),
                     TextField(
-                      controller: fieldText3,
+                      controller: fieldText2,
                       decoration: InputDecoration(
                           icon: Icon(Icons.text_fields), //icon of text field
-                          labelText: "Opis" //label text of field
+                          labelText: "Krótki opis" //label text of field
                       ),
                       onChanged: (text) {
                         //print('First text field: $text');
                         description = text;
+                      },
+                    ),
+                    TextField(
+                      controller: fieldText3,
+                      decoration: InputDecoration(
+                          icon: Icon(Icons.text_fields), //icon of text field
+                          labelText: "Link do strony" //label text of field
+                      ),
+                      onChanged: (text) {
+                        //print('First text field: $text');
+                        localization = text;
                       },
                     ),
 
@@ -68,7 +79,8 @@ class MyAppState4 extends State<AdminPageFaq> {
 
                         events.add({
                           'title' : name,
-                          'content': description,
+                          'subtitle': description,
+                          'url':localization
                         });
                         fieldText.clear();
                         fieldText2.clear();

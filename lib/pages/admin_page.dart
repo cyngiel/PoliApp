@@ -129,7 +129,19 @@ class MyAppState3 extends State<AdminPage> {
                     fieldText2.clear();
                     fieldText3.clear();
                     dateinput.clear();
-
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Dodano'),
+                        //content: const Text('AlertDialog description'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
                   },
                 ), //Checkbox
               ],

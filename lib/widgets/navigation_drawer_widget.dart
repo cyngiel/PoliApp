@@ -1,9 +1,11 @@
 import 'package:poli_app/pages/admin_page.dart';
 import 'package:poli_app/pages/adminfaq_page.dart';
+import 'package:poli_app/pages/adminfood_page.dart';
 import 'package:poli_app/pages/calendar_pages/events_example.dart';
 import 'package:poli_app/pages/faqs_page.dart';
 import 'package:poli_app/pages/findout.dart';
 import 'package:poli_app/pages/info_page.dart';
+import 'package:poli_app/pages/jedzenie_page.dart';
 import 'package:poli_app/pages/links_page.dart';
 import 'package:poli_app/pages/login_page.dart';
 import 'package:poli_app/pages/medical_page.dart';
@@ -21,7 +23,13 @@ class NavigationDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final name = 'PoliApp';
-    final email = 'Politechnika Lódzka';
+    String email = 'Politechnika Lódzka';
+    if(Auth().isLoggedIn){
+      email = 'Panel administracyjny';
+    }
+    else{
+      email = 'Politechnika Lódzka';
+    }
 /*    final urlImage =
         'https://p.lodz.pl/arch/sites/default/files/pliki/logo-pl_2.jpg';*/
     final urlImage = 'assets/logo-pl_2.jpg';
@@ -59,12 +67,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                       icon: Icons.settings_applications_outlined,
                       onClicked: () => selectedItem(context, 7),
                     ),
-                    const SizedBox(height: 16),
-                    buildMenuItem(
-                      text: 'Plan Zajęć',
-                      icon: Icons.calendar_view_day_outlined,
-                      onClicked: () => selectedItem(context, 6),
-                    ),
+                    Divider(color: Colors.white70),
                     const SizedBox(height: 16),
                     buildMenuItem(
                       text: 'FAQ',
@@ -77,18 +80,20 @@ class NavigationDrawerWidget extends StatelessWidget {
                       icon: Icons.settings_applications_outlined,
                       onClicked: () => selectedItem(context, 10),
                     ),
+                    Divider(color: Colors.white70),
                     const SizedBox(height: 16),
                     buildMenuItem(
-                      text: 'Przydatne linki',
-                      icon: Icons.link,
-                      onClicked: () => selectedItem(context, 2),
+                      text: 'Restauracje',
+                      icon: Icons.food_bank_outlined,
+                      onClicked: () => selectedItem(context, 11),
                     ),
                     const SizedBox(height: 16),
                     buildMenuItem(
-                      text: 'Placówki medyczne',
-                      icon: Icons.medical_services_outlined,
-                      onClicked: () => selectedItem(context, 5),
+                      text: 'Dodawanie restauracji',
+                      icon: Icons.settings_applications_outlined,
+                      onClicked: () => selectedItem(context, 12),
                     ),
+
                     const SizedBox(height: 24),
                     Divider(color: Colors.white70),
                     const SizedBox(height: 12),
@@ -159,6 +164,12 @@ class NavigationDrawerWidget extends StatelessWidget {
                       text: 'Przydatne linki',
                       icon: Icons.link,
                       onClicked: () => selectedItem(context, 2),
+                    ),
+                    const SizedBox(height: 16),
+                    buildMenuItem(
+                      text: 'Restauracje',
+                      icon: Icons.food_bank_outlined,
+                      onClicked: () => selectedItem(context, 11),
                     ),
                     const SizedBox(height: 16),
                     buildMenuItem(
@@ -317,6 +328,16 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 10:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => AdminPageFaq(),
+        ));
+        break;
+      case 11:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => EatPage(),
+        ));
+        break;
+      case 12:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => AdminPageFood(),
         ));
         break;
     }

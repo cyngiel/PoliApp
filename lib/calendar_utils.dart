@@ -50,8 +50,8 @@ final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
       Event.basicEvent('Today\'s Event 2'),
     ],
     kNextDay: [
-      Event(title: 'Ciekawe spotkanie', date: getDateString(kNextDay) , time: '15:15', localization: 'CTI 308', description: 'Niesamowicie ciekawe spotkanie na tematy niesaoowicie ciekawe i  wyczekiwane opis opis opis opis', prior: true),
-      Event.basicEvent('Rektor oprowadza'),
+      //Event(title: 'Ciekawe spotkanie', date: getDateString(kNextDay) , time: '15:15', localization: 'CTI 308', description: 'Niesamowicie ciekawe spotkanie na tematy niesaoowicie ciekawe i  wyczekiwane opis opis opis opis', prior: true),
+      Event(title: 'Dzień otwarty wydziału BINOŻ', date: getDateString(kNextDay) , time: '9:00 - 15:00', localization: 'CTI 308', description: 'Zapraszamy na dzień otwarty wydziału Biotechnologii i Nauk o Żywności.', prior: true),
     ],
 
   });
