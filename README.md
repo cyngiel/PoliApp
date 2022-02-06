@@ -1,6 +1,8 @@
 # PoliApp
 Flutter mobile app for student project
 
+Project developed in Android Studio. Flutter/Dart is needed. 
+
 ## Run Configuration
 
 Run -> Edit Configuration  
